@@ -1,0 +1,23 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+            <h4>{{title1}}</h4>
+            <table cellpadding="5">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Primer apellido</th>
+                    <th>Segundo apellido</th>
+                </tr>
+                
+                {% for row in resultados %}
+                <tr>
+                    <td><a href='alumnos/{{row.getIdAlumno()}}'>{{row.getNombreAlumno()|capitalize}}</a></td>
+                    <td>{{row.getPrimerApellidoAlumno()|capitalize}}</td>
+                    <td>{{row.getSegundoApellidoAlumno()|capitalize}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <p class='button'><a href="/">Volver</a></p>
+    {% endblock %}
+    
+

@@ -1,0 +1,68 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    {% if resultados is null %}
+        <h4>{{title1}}</h4>
+        <form action="" method="post">
+            <p>{{numero1}}{{operacion}}{{numero2}}</p>
+            <input type="hidden" name="numero1" value={{numero1}} />
+            <input type="hidden" name="numero2" value={{numero2}} />
+            <p>Resultado: <input type="number" name="resultado" required></p>
+            {% if op == 'division' %}
+            <p>Resto: <input type="number" name="resto" required></p>
+            {% endif %}
+            <p>Nombre: <input type="string" name="name" maxlentgh=50 required></p>
+            <p>Primer apellido: <input type="string" name="firstSurname" maxlentgh=100 required></p>
+            <p>Segundo apellido: <input type="string" name="secondSurname" maxlentgh=100></p>
+            <p><input type="submit" value="Buscar"> </p>
+        </form>
+        <p><a href="/">Volver</a></p>
+    {% else  %}
+        {%if list=='all'  %}          
+            <h4>{{title1}}</h4>
+            <table cellpadding="5">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Primer apellido</th>
+                    <th>Segundo apellido</th>
+                </tr>
+                </tr>
+                {% for row in resultados %}
+                    <td><a href='alumnos/?id={{row.getIdAlumno()}}'>{{row.getNombreAlumno()|capitalize}}</a></td>
+                    <td>{{row.getPrimerApellidoAlumno()|capitalize}}</td>
+                    <td>{{row.getSegundoApellidoAlumno()|capitalize}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <p class='button'><a href="/">Volver</a></p>
+
+        {% else  %}            
+            <h4>{{title1}}</h4>
+            <table cellpadding="5">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Primer apellido</th>
+                    <th>Segundo apellido</th>
+                    <th colspan='10'>Niveles</th>
+                </tr>
+                </tr>
+                {% for row in resultados %}
+                    <td><a href='alumnos/?id={{row.getIdAlumno()}}'>{{row.getNombreAlumno()|capitalize}}</a></td>
+                    <td>{{row.getPrimerApellidoAlumno()|capitalize}}</td>
+                    <td>{{row.getSegundoApellidoAlumno()|capitalize}}</td>
+                {% if niveles is null %}
+                    <td></td>
+                {% else %} 
+                    {% for row in niveles %}
+                        <td>{{row.getIdNivel()}}</td>
+                    {% endfor %}
+                {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+            <p class='button'><a href="/alumnos">Volver</a></p>
+        {% endif %}
+    {% endif %}
+    {% endblock %}
+    
+

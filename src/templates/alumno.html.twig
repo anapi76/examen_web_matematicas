@@ -1,0 +1,41 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    {% if resultados is null %}
+        <h4>{{title1}}</h4>
+        <form action="" method="post">
+            <p>Nombre: <input type="string" name="name" maxlentgh=50 required></p>
+            <p>Primer apellido: <input type="string" name="firstSurname" maxlentgh=100 required></p>
+            <p>Segundo apellido: <input type="string" name="secondSurname" maxlentgh=100></p>
+            <p><input type="submit" value="Buscar"> </p>
+        </form>
+        <p><a href="/">Volver</a></p>
+    {% else  %}          
+        <h4>{{title1}}</h4>
+        <table cellpadding="5">
+        <h4>Nombre del alumno</h4>
+        {% for row in resultados %}
+            <p>{{row.getNombreAlumno()|capitalize}} {{row.getPrimerApellidoAlumno()|capitalize}} {{row.getSegundoApellidoAlumno()|capitalize}}</p>
+                <tr>
+                    <th>Operación</th>
+                    <th>Aciertos</th>
+                    <th>Fallos</th>
+                </tr>
+        {% endfor %}    
+        {% if niveles is null %}
+            {{''}}
+        {% else %} 
+            {% for row in niveles %}
+                <tr>
+                    <td>{{row.getOperacion().getNombreOperacion()}}</td>
+                    <td>{{row.getAciertos()}}</td>
+                    <td>{{row.getFallos()}}</td>
+                </tr>
+            {% endfor %}   
+        {% endif %}
+        </table>
+        <p class='button'><a href="/alumnos">Volver</a></p>
+    {% endif %}
+    {% endblock %}
+    
+

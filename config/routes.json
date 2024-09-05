@@ -1,0 +1,30 @@
+{
+  "/":{
+    "controller": "MainController",
+    "action":   "main"
+  },
+  "/alumnos":{
+    "controller":"AlumnosController",
+    "action": "alumno"
+  },
+  "/listaAlumnos":{
+    "controller":"AlumnosController",
+    "action": "listaAlumnos"
+  },
+  "/sumar": {
+    "controller": "OperacionesController",
+    "action": "sumar"
+  },
+  "/restar": {
+    "controller": "OperacionesController",
+    "action": "restar"
+  },
+  "/multiplicar": {
+    "controller": "OperacionesController",
+    "action": "multiplicar"
+  },
+  "/dividir": {
+    "controller": "OperacionesController",
+    "action": "dividir"
+  }
+}
